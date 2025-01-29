@@ -1,0 +1,2 @@
+version control is important because it allows people to work on code or documents so no one overwrites another person and you can go back to previous versions
+
