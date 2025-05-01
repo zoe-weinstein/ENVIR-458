@@ -67,63 +67,61 @@ xgb_feature_importances = pd.DataFrame(xgb.feature_importances_,
 
 
 if __name__ == "__main__":
-    #Fire Per Year
-    # plt.figure(figsize=(10, 4))
-    # sns.barplot(x='YEAR', y='FIRE_START_DAY', hue="SEASON", data=df, estimator=sum)
-    # plt.title("Fire Starts per Year")
-    # plt.ylabel("Number of Fires")
-    # plt.xlabel("Year")
-    # plt.tight_layout()
-    # plt.show()
+    # Fire Per Year
+    plt.figure(figsize=(10, 4))
+    sns.barplot(x='YEAR', y='FIRE_START_DAY', hue="SEASON", data=df, estimator=sum)
+    plt.title("Fire Starts per Year")
+    plt.ylabel("Number of Fires")
+    plt.xlabel("Year")
+    plt.tight_layout()
+    plt.show()
 
-    # #Fire by Season
-    # sns.barplot(x='SEASON', y='FIRE_START_DAY', data=df, estimator=sum)
-    # plt.title("Fires by Season")
-    # plt.ylabel("Total Fire Starts")
-    # plt.show()
+    #Fire by Season
+    sns.barplot(x='SEASON', y='FIRE_START_DAY', data=df, estimator=sum)
+    plt.title("Fires by Season")
+    plt.ylabel("Total Fire Starts")
+    plt.show()
 
-    # # Temperature 
-    # sns.boxplot(x='FIRE_START_DAY', y='MAX_TEMP', data=df)
-    # plt.title("Max Temperature on Fire vs Non-Fire Days")
-    # plt.show()
+    # Temperature 
+    sns.boxplot(x='FIRE_START_DAY', y='MAX_TEMP', data=df)
+    plt.title("Max Temperature on Fire vs Non-Fire Days")
+    plt.show()
 
-    # # Wind Speed
-    # sns.boxplot(x='FIRE_START_DAY', y='AVG_WIND_SPEED', data=df)
-    # plt.title("Wind Speed on Fire vs Non-Fire Days")
-    # plt.show()
+    # Wind Speed
+    sns.boxplot(x='FIRE_START_DAY', y='AVG_WIND_SPEED', data=df)
+    plt.title("Wind Speed on Fire vs Non-Fire Days")
+    plt.show()
 
-    # # Precipitation
-    # sns.boxplot(x='FIRE_START_DAY', y='PRECIPITATION', data=df)
-    # plt.title("Precipitation on Fire vs Non-Fire Days")
-    # plt.show()
+    # Precipitation
+    sns.boxplot(x='FIRE_START_DAY', y='PRECIPITATION', data=df)
+    plt.title("Precipitation on Fire vs Non-Fire Days")
+    plt.show()
 
 
     #Logisitic Regression
     print("Logistic Regression Classification Report")
     print(y_pred_log_reg)
     print(classification_report(y_test, y_pred_log_reg))
-    accuracy = accuracy_score(y_test, y_pred)  # Calculate accuracy
 
+    # Random Forest
+    print("Random Forest Classification Report")
+    print(classification_report(y_test, y_pred_rf))
+    print("Random Forest Feature Importances")
+    print(rf_feature_importances)
 
-    # # Random Forest
-    # print("Random Forest Classification Report")
-    # print(classification_report(y_test, y_pred_rf))
-    # print("Random Forest Feature Importances")
-    # print(rf_feature_importances)
+    # XGBoost
+    print("XGBoost Classification Report")
+    print(classification_report(y_test, y_pred_xgb))
+    print("XGBoost Feature Importances")
+    print(xgb_feature_importances)
 
-    # # XGBoost
-    # print("XGBoost Classification Report")
-    # print(classification_report(y_test, y_pred_xgb))
-    # print("XGBoost Feature Importances")
-    # print(xgb_feature_importances)
-
-    # #Graph Feature Importance for RF and XGB
-    # plt.figure(figsize=(10, 6))
-    # plt.subplot(1, 2, 1) 
-    # sns.barplot(x=rf_feature_importances['Importance'], y=rf_feature_importances.index)
-    # plt.title("Random Forest Feature Importances")
-    # plt.subplot(1, 2, 2)
-    # sns.barplot(x=xgb_feature_importances['Importance'], y=xgb_feature_importances.index)
-    # plt.title("XGBoost Feature Importances")
-    # plt.tight_layout()
-    # plt.show()
+    #Graph Feature Importance for RF and XGB
+    plt.figure(figsize=(10, 6))
+    plt.subplot(1, 2, 1) 
+    sns.barplot(x=rf_feature_importances['Importance'], y=rf_feature_importances.index)
+    plt.title("Random Forest Feature Importances")
+    plt.subplot(1, 2, 2)
+    sns.barplot(x=xgb_feature_importances['Importance'], y=xgb_feature_importances.index)
+    plt.title("XGBoost Feature Importances")
+    plt.tight_layout()
+    plt.show()
